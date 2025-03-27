@@ -1,0 +1,6 @@
+Nama : Muhammad Reza
+IT Development
+
+Project dikerjakan di ASP.NET Framework 4.7.2
+
+File Backup SQL Server Bernama "REZA_DB.bak"

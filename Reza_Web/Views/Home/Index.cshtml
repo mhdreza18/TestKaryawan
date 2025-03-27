@@ -1,0 +1,46 @@
+﻿@model Reza_Web.Models.ViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.CardCode = @Model.Admin[0].DAPCardCode;
+    //ViewBag.Picture = @Model.Customer[0].Picture;
+    ViewBag.CardName = @Model.Admin[0].CardName;
+    ViewBag.Priv = @Model.Admin[0].Privilege;
+    ViewBag.Title = "SMI | Profile";
+    ViewBag.Content = "Profile";
+}
+
+
+
+
+@section content {
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3 mb-4">
+
+                    <!-- Profile Image -->
+                    <div class="card card-primary border-top-warning shadow h-100">
+                        <div class="card-body box-profile">
+                            <div class="text-center">
+                                <img class="profile-user-img img-fluid img-circle"
+                                     src="~/Content/img/profile.png"
+                                     alt="Customer profile picture">
+                            </div>
+                          
+                        </div>
+                        
+                        </div>
+
+                </div>
+             
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </section>
+}

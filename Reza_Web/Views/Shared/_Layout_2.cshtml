@@ -1,0 +1,294 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+    <link rel="icon" href="@Url.Content("~/Content/img/logo.ico")" />
+    <!-- Google Font: Source Sans Pro -->
+    @*<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">*@
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="~/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="~/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">zz
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.min.css">
+    <!-- iCheck for checkboxes and radio inputs -->
+    <link rel="stylesheet" href="~/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/adminlte/css/adminlte.min.css">
+    <!-- JQuery -->
+    <link rel="stylesheet" href="~/plugins/jquery-ui/jquery-ui.min.css">
+    <!-- Bootstrap DataTables CSS -->
+    @*<link rel="stylesheet" type="text/css" href="~/Content/dataTables.bootstrap4.css">*@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.bootstrap4.min.css">
+
+    <style>
+        .input-group-text:hover {
+            cursor: pointer;
+        }
+
+        .zoom {
+            transition: transform .2s; /* Animation */
+        }
+
+            .zoom:hover {
+                transform: scale(4); /* (400% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+            }
+
+        tr.selected {
+            background-color: #e2e1e1 !important;
+            color: #fff;
+        }
+
+        .modalview {
+            position: absolute;
+            float: left;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        table td input {
+        }
+    </style>
+</head>
+<!--
+`body` tag options:
+
+  Apply one or more of the following classes to to the body tag
+  to get the desired effect
+
+  * sidebar-collapse
+  * sidebar-mini
+-->
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+            </ul>
+
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+                <!-- Navbar Search -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/Home/SignOut" role="button">
+                        <i class="fas fa-sign-out-alt"></i> Sign Out
+                    </a>
+                </li>
+            </ul>
+
+        </nav>
+        <!-- /.navbar -->
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="#" class="brand-link">
+                <img src="~/Content/img/logo2.png" alt="SMI Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text font-weight-light"></span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        @*<img src="@ViewBag.Picture" class="img-circle elevation-2" alt="User Image">*@
+                    </div>
+                    <div class="form-group pl-3">
+
+                        <a href="#" class="d-block">@ViewBag.CardCode</a>
+
+                        <a href="#" class="d-block">@ViewBag.CardName</a>
+
+                    </div>
+
+                </div>
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+                        with font-awesome or any other icon font library -->
+                        <li class="nav-item lod">
+                            <a href="/Home/Index" class="nav-link ">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Home
+                                </p>
+                            </a>
+                        </li>
+
+
+                        <li class="nav-item ">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-copy"></i>
+                                <p>
+                                    Setting
+                                    @*<span style="color:red; margin-left:4px">  (BETA)</span>*@
+                                    <i class="fas fa-angle-left right"></i>
+                                    <span id="notrequest" class="badge badge-info right"></span>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview pl-2">
+                                <li class="nav-item lod">
+                                    <a id="password" href="/Home/Change" class="nav-link ">
+                                        <i class="nav-icon fa fa-key"></i>
+                                        <p>
+                                            Change Password
+                                            @*<i class="fas fa-angle-left right"></i>*@
+                                        </p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0">@ViewBag.Content</h1>
+                        </div><!-- /.col -->
+                        <!--<div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                <li class="breadcrumb-item active">@ViewBag.Content</li>
+                            </ol>
+                        </div>-->
+                        <!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+            <!-- Main content -->
+            @RenderSection("content", false)
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <div class="float-right d-none d-sm-block">
+                @*BETA <b>Version</b>*@
+            </div>
+            <strong>Copyright SUMBER MITRA INDONESIA 2023.</strong>
+        </footer>
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+    <div id="spinner" class="modalview" style="display:none">
+        <img src="~/Content/img/ajax-loader.gif" alt="Loading" />
+    </div>
+    <!-- ./wrapper -->
+    <!-- jQuery -->
+    <script src="~/plugins/jquery/jquery.min.js"></script>
+    <script src="~/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Select2 -->
+    <script src="~/plugins/select2/js/select2.full.min.js"></script>
+    <!-- AdminLTE App -->
+    @*<script src="~/dist/js/adminlte.min.js"></script>*@
+    <script src="~/adminlte/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    @*<script src="~/dist/js/demo.js"></script>*@
+    <!-- bs-custom-file-input -->
+    <script src="~/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+    <!-- Jquery DataTables -->
+    @*<script type="text/javascript" language="javascript" src="~/plugins/datatables/jquery.dataTables.min.js"></script>*@
+    <!-- Bootstrap Javascript -->
+    @*<script type="text/javascript" language="javascript" src="~/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>*@
+
+
+    https://code.jquery.com/jquery-3.7.0.js
+
+
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap4.min.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            $('#sqpostdate').datepicker({
+                dateFormat: "dd/mm/yy",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-5:+1",
+            });
+            $('#sqdeliverdate').datepicker({
+                dateFormat: "dd/mm/yy",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-5:+1",
+            });
+            $('.table-paginate').dataTable();
+        });
+        $('#show').click(function (e) {
+            e.preventDefault();
+            $.ajax({
+                url: '/Price/Show',
+                type: "POST",
+                data: {
+                    code: $('#code').val()
+                },
+                dataType: 'text',
+                traditional: true,
+                success: function (result) {
+                    window.location = "/Price/View"
+                },
+                error: function (err) {
+                    alert(err.statusText);
+                }
+            });
+        });
+        $("#sqaddnew").on("click", function (event) {
+            event.preventDefault();
+
+            var newRow = $("<tr>");
+            var cols = '';
+
+            cols += '<td><input class="form-control rounded-0 form-control-sm border-top-0 border-right-0 border-left-0" type="text" placeholder="Item Code"></td>';
+            cols += '<td><input class="form-control rounded-0 form-control-sm border-top-0 border-right-0 border-left-0" type="text" placeholder="Item Name" disabled></td>';
+            cols += '<td><input class="form-control rounded-0 form-control-sm border-top-0 border-right-0 border-left-0" type="text" placeholder="Qty"></td>';
+            cols += '<td><input class="form-control rounded-0 form-control-sm border-top-0 border-right-0 border-left-0" type="text" placeholder="Price" disabled></td>';
+            cols += '<td><input class="form-control rounded-0 form-control-sm border-top-0 border-right-0 border-left-0" type="text" placeholder="Total" disabled></td>';
+            cols += '<td><button class="btn btn-danger rounded-0 btn-sm" id ="deleteRow"><i class="fa fa-trash"></i></button</td>';
+
+            newRow.append(cols);
+
+            $("table").append(newRow);
+
+        });
+
+
+
+        $("table").on("click", "#deleteRow", function (event) {
+            $(this).closest("tr").remove();
+            counter -= 1
+        });
+    </script>
+
+
+</body>
+</html>

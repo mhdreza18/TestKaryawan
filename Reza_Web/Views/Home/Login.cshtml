@@ -1,0 +1,73 @@
+﻿@model Reza_Web.Models.Home.Error
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout_Login.cshtml";
+}
+@section pLogin {
+
+    <!-- Content -->
+
+    <div class="container-xxl">
+        <div class="authentication-wrapper authentication-basic container-p-y">
+            <div class="authentication-inner">
+
+                <!-- Register -->
+                <div class="card">
+                    <div class="card-body">
+                        <!-- Logo -->
+                        <div class="app-brand justify-content-center mb-4">
+                            <a class="app-brand-link gap-2 ">
+                                <img src="~/Content/img/logo.png" style="width:100px">
+                            </a>
+                        </div>
+                        <!-- /Logo -->
+
+                        <div class="row" style="text-align: center;">
+                            <div class="form-group center-block">
+                                <div class="row pl-1 pr-1"  style="font-size: 24px; font-weight: bold; line-height: 1;">
+                                    <p class="mb-2" >Portofolio Project</p>
+                                </div>
+                                <div class="row pl-1 pr-1" style="font-size: 36px; font-weight: bold; line-height: 1;">
+                                    <p class="mb-2" >Muhammad Reza</p>
+                                </div>
+                                <div class="row">
+                                    <p class="mb-2">IT Development</p>
+                                </div>
+                                <div class="row pl-5 pr-5"  style=" line-height: 2;">
+                                    <p class="mb-2" style=" line-height: 5;">  </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
+                            <div class="mb-3">
+                                <button name="login" id="login" href="index.html" class="btn btn-primary d-grid w-100" type="submit">Mulai</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+                <!-- /Register -->
+
+            </div>
+        </div>
+    </div>
+
+    <!-- / Content -->
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="../assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="../assets/vendor/libs/popper/popper.js"></script>
+    <script src="../assets/vendor/js/bootstrap.js"></script>
+    <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+    <script src="../assets/vendor/js/menu.js"></script>
+    <!-- endbuild -->
+    <!-- Vendors JS -->
+    <!-- Main JS -->
+    <script src="../assets/js/main.js"></script>
+
+    <!-- Page JS -->
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+}

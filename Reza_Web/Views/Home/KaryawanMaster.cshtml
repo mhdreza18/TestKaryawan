@@ -1,0 +1,374 @@
+﻿@model Reza_Web.Models.ViewModelAdmin
+@{
+    ViewBag.Title = "SMI | Karyawan Master";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.CardCode = @Model.Admin[0].DAPCardCode;
+    ViewBag.CardName = @Model.Admin[0].CardName;
+    ViewBag.Content = "Karyawan Master";
+}
+@section content {
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card card-default">
+
+                <div class="row">
+
+                    <div class="col-md">
+                        <div class="card border-top-primary">
+
+                            <div class="card-body table-responsive p-0 scroll-y">
+                                <div class="tab-content pt-2">
+                                    <input id="KaryawancodeCliked" type="hidden" value="">
+
+
+                                    <div>
+                                        <p></p>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="form-group mb-0 ml-3">
+                                                <div class="row">
+                                                    <div class="col pl-2 pr-2">
+                                                        <label for="KaryawanAwal" class="col-sm col-form-label col-form-label-sm pl-2">Nama Karyawan</label>
+                                                        <input id="KaryawanAwal" type="text" class="form-control form-control-sm" value="">
+                                                    </div>
+                                                    <div class="col-1 pl-1 pr-1">
+                                                        <label class="col col-form-label col-form-label-sm pl-2 pr-1"></label>
+                                                        <label class="col col-form-label col-form-label-sm pl-2 pr-1">Sampai Dengan</label>
+                                                    </div>
+                                                    <div class="col pl-2 ">
+                                                        <label for="KaryawanAkhir" class="col-sm col-form-label col-form-label-sm pl-2"></label>
+                                                        <input id="KaryawanAkhir" type="text" class="form-control form-control-sm" value="">
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col pl-2 pr-2">
+                                                        <label for="UsiaAwal" class="col-sm col-form-label col-form-label-sm pl-2">Usia Karyawan dari</label>
+                                                        <input id="UsiaAwal" type="text" class="form-control form-control-sm" value="">
+                                                    </div>
+                                                    <div class="col-1 pl-1 pr-1">
+                                                        <label class="col col-form-label col-form-label-sm pl-2 pr-1"></label>
+                                                        <label class="col col-form-label col-form-label-sm pl-2 pr-1">Sampai Dengan</label>
+                                                    </div>
+                                                    <div class="col pl-2 ">
+                                                        <label for="UsiaAakhir" class="col-sm col-form-label col-form-label-sm pl-2"> </label>
+                                                        <input id="UsiaAkhir" type="text" class="form-control form-control-sm" value="">
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col pl-2 pr-2">
+                                                        <label for="TglMasukAwal" class="col-sm col-form-label col-form-label-sm pl-2">Tanggal Masuk Kerja</label>
+                                                        <input id="TglMasukAwal" type="date" class="form-control form-control-sm" value="">
+                                                    </div>
+                                                    <div class="col-1 pl-1 pr-1">
+                                                        <label class="col col-form-label col-form-label-sm pl-2 pr-1"></label>
+                                                        <label class="col col-form-label col-form-label-sm pl-2 pr-1">Sampai Dengan</label>
+                                                    </div>
+                                                    <div class="col pl-2 ">
+                                                        <label for="TglMasukAkhir" class="col-sm col-form-label col-form-label-sm pl-2"> </label>
+                                                        <input id="TglMasukAkhir" type="date" class="form-control form-control-sm" value="">
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <p></p>
+                                                    <div class="col">
+                                                        <p></p>
+                                                        <button type="button" id="SearchKaryawanMaster" class="btn btn-primary waves-effect btn-sm" data-toggle="modal" data-target="#SearchKaryawanM"><i class="fa fa-plus-square pr-2" aria-hidden="true"></i>SEARCH</button>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="row">
+                                            <p></p>
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="active tab-pane scroll-y" id="KaryawanM">
+                                        <table class="table table-hover text-nowrap table-sm table-striped" id="umDetailTableKaryawan">
+                                            <thead>
+                                                <tr>
+                                                    <th class="align-middle">
+                                                        <label class="containerChk pt-3">
+                                                            <input type="checkbox" class="KaryawanCheck" id="KaryawanCheckAll">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </th>
+                                                    <th>IDKaryawan</th>
+                                                    <th>Nama Karyawan</th>
+                                                    <th>TglMasukKerja</th>
+                                                    <th>Usia</th>
+                                                    <th>Action</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if (Model.KaryawanMaster.Count == 0)
+                                                {
+                                                    <tr>
+                                                        <td colspan="10" align="center"> <i>*** Karyawan not found! ***</i>  </td>
+                                                    </tr>
+                                                }
+                                                else
+                                                {
+                                                    foreach (var item in Model.KaryawanMaster)
+                                                    {
+                                                        <tr class="cursor-pointer tr_KaryawanM">
+                                                            <td>
+                                                                <label class="containerChk pt-3">
+                                                                    <input data-code="@item.IDKaryawan" type="checkbox" class="KaryawanCheck">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td class="rws_IDKaryawan">@item.IDKaryawan</td>
+                                                            <td class="rws_NmKaryawan">@item.NmKaryawan</td>
+                                                            <td class="rws_TglMasukKerja">@item.TglMasukKerja</td>
+                                                            <td class="rws_Usia">@item.Usia</td>
+
+                                                            <td>
+                                                                <i class="fa fa-edit cursor-pointer ml-1 mr-1 KaryawanmEdit" data-toggle="modal" data-target="#editKaryawanDetail" aria-hidden="true" title="EDIT" style="color: green;"></i>
+
+                                                                <i class="fa fa-trash cursor-pointer ml-1 KaryawanmDel" aria-hidden="true" title="REMOVE" style="color: #ff0000;"></i>
+                                                            </td>
+
+                                                        </tr>
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+                </div>
+                <div class="row-cols-sm-1">
+                    <div class="col">
+                        <button type="button" id="addKaryawanMaster" class="btn btn-outline-success waves-effect btn-sm" data-toggle="modal" data-target="#addNewKaryawan"><i class="fa fa-plus-square pr-2" aria-hidden="true"></i> Add New Karyawan</button>
+                        <button type="button" id="DeleteKaryawanMaster" class="btn btn-outline-danger waves-effect btn-sm"><i class="fa fa-plus-square pr-2" aria-hidden="true"></i> Delete Karyawan</button>
+                        <button type="button" id="EditKaryawanMaster" class="btn btn-outline-warning waves-effect btn-sm" data-toggle="modal" data-target="#addNewKaryawanCheck"><i class="fa fa-plus-square pr-2" aria-hidden="true"></i> Edit Karyawan</button>
+                        <button type="button" id="OUTKaryawanMaster" class="btn btn-secondary waves-effect btn-sm"><a href="/Home/SignOut"><div class="font-weight-bold" style="color: white;"> Tutup</div></a></button>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <p></p>
+                   
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!--     POPUP ADD Karyawan    -->
+
+        <div class="modal fade bd-example-modal-lg" id="addNewKaryawan" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+
+                        <div class="card card-default">
+
+                            <div class="card-header pl-3 header-color">
+                                <h5 class="modal-title">Add New Karyawan</h5>
+
+                            </div>
+                            <div class="card-body pt-1">
+                                <form>
+
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <label for="KaryawanID" class="col-sm col-form-label col-form-label-sm pl-2">ID Karyawan</label>
+                                            <input id="KaryawanID" type="text" class="form-control form-control-sm" placeholder="IDKaryawan" value="">
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <label for="Karyawancardname" class="col-sm col-form-label col-form-label-sm pl-2">Nama Karyawan</label>
+                                            <input id="Karyawancardname" type="text" class="form-control form-control-sm" placeholder="Nama Karyawan" value="">
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <label for="KaryawanTgl" class="col-sm col-form-label col-form-label-sm pl-2">Tanggal Masuk Karyawan</label>
+                                            <input id="KaryawanTgl" type="date" class="form-control form-control-sm" placeholder="Tanggal" value="">
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <label for="KaryawanUsia" class="col-sm col-form-label col-form-label-sm pl-2">Usia Karyawan</label>
+                                            <input id="KaryawanUsia" type="text" class="form-control form-control-sm" placeholder="Usia" value="">
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                            <div class="card-footer">
+                                <button type="button" id="addKaryawan" class="btn btn-success waves-effect btn-sm">Tambah</button>
+                            </div>
+
+
+
+
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <!--         POPUP Karyawan Detail EDIT                  -->
+
+        <div class="modal fade bd-example-modal-lg" id="editKaryawanDetail" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-primary">Edit Karyawan Detail </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <div class="card card-default">
+
+                            <div class="card-header pl-3 header-color">
+                                <h5 class="modal-title">Add New Karyawan</h5>
+
+                            </div>
+                            <div class="card-body pt-1">
+                                <form>
+
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <label for="KaryawanIDEdit" class="col-sm col-form-label col-form-label-sm pl-2">ID Karyawan</label>
+                                            <input id="KaryawanIDEdit" type="text" class="form-control form-control-sm" placeholder="ID" value="">
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <label for="KaryawancardnameEdit" class="col-sm col-form-label col-form-label-sm pl-2">Nama Karyawan</label>
+                                            <input id="KaryawancardnameEdit" type="text" class="form-control form-control-sm" placeholder="Nama" value="">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <label for="KaryawanTglEdit" class="col-sm col-form-label col-form-label-sm pl-2">Tanggal Masuk Karyawan</label>
+                                            <input id="KaryawanTglEdit" type="date" class="form-control form-control-sm">
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <label for="KaryawanUsiaEdit" class="col-sm col-form-label col-form-label-sm pl-2">Usia Karyawan</label>
+                                            <input id="KaryawanUsiaEdit" type="text" class="form-control form-control-sm" placeholder="Usia" value="">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" id="editKaryawan" class="btn btn-success waves-effect btn-sm">Edit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!--         POPUP Karyawan Detail EDIT  CHECK                 -->
+
+        <div class="modal fade bd-example-modal-lg" id="editKaryawanDetailCheck" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-primary">Edit Karyawan Detail </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <div class="card card-default">
+
+                            <div class="card-header pl-3 header-color">
+                                <h5 class="modal-title">Add New Karyawan</h5>
+
+                            </div>
+                            <div class="card-body pt-1">
+                                <form>
+
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <label for="KaryawanIDEditCheck" class="col-sm col-form-label col-form-label-sm pl-2">ID Karyawan</label>
+                                            <input id="KaryawanIDEditCheck" type="text" class="form-control form-control-sm" placeholder="ID" value="">
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <label for="KaryawancardnameEditCheck" class="col-sm col-form-label col-form-label-sm pl-2">Nama Karyawan</label>
+                                            <input id="KaryawancardnameEditCheck" type="text" class="form-control form-control-sm" placeholder="Nama" value="">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <label for="KaryawanTglEditCheck" class="col-sm col-form-label col-form-label-sm pl-2">Tanggal Masuk Karyawan</label>
+                                            <input id="KaryawanTglEditCheck" type="date" class="form-control form-control-sm">
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <label for="KaryawanUsiaEditCheck" class="col-sm col-form-label col-form-label-sm pl-2">Usia Karyawan</label>
+                                            <input id="KaryawanUsiaEditCheck" type="text" class="form-control form-control-sm" placeholder="Usia" value="">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" id="editKaryawanCheck" class="btn btn-success waves-effect btn-sm">Edit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+}
+
