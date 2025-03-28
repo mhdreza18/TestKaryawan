@@ -860,14 +860,20 @@
                 $("#KaryawanIDEdit").val($(this).closest("tr").find(".rws_IDKaryawan").text());
                 $("#KaryawancardnameEdit").val($(this).closest("tr").find(".rws_NmKaryawan").text());
 
-                var tanggal = $(this).closest("tr").find(".rws_TglMasukKerja").text().trim();
-                $("#KaryawanTglEdit").val($(this).closest("tr").find(".rws_TglMasukKerja").text().trim());
+                //$("#KaryawanTglEdit").val($(this).closest("tr").find(".rws_TglMasukKerja").text());
 
-                //alert(tanggal);
+                var tanggalKM = $(this).closest("tr").find(".rws_TglMasukKerja").text().trim();
+
+                 // Konversi ke format YYYY-MM-DD
+                var dateParts = tanggalKM.split('/');
+                if (dateParts.length === 3) {
+                    var formattedDate = dateParts[2] + "-" + dateParts[1] + "-" + dateParts[0];
+                    $("#KaryawanTglEdit").val(formattedDate);
+                } else {
+                    alert("KaryawanTglEdit gagal convert tanggal");
+                }
 
                 $("#KaryawanUsiaEdit").val($(this).closest("tr").find(".rws_Usia").text());
-
-                //alert('oke');
                 $('#editKaryawanDetail').modal('toggle');
 
             });
