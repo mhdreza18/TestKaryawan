@@ -186,7 +186,7 @@ namespace Reza_Web.Controllers
                         {
                             IDKaryawan = re["IDKaryawan"] as string,
                             NmKaryawan = re["NmKaryawan"] as string,
-                            TglMasukKerja = Convert.ToDateTime(re["TglMasukKerja"]).ToString("MM/dd/yyyy"),
+                            TglMasukKerja = Convert.ToDateTime(re["TglMasukKerja"]).ToString("yyyy/MM/dd"),
                             Usia = Convert.ToDecimal(re["Usia"]).ToString("N0")
                         });
                     }
