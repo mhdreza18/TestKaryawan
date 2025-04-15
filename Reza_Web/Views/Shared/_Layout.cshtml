@@ -867,7 +867,7 @@
                  // Konversi ke format YYYY-MM-DD
                 var dateParts = tanggalKM.split('/');
                 if (dateParts.length === 3) {
-                    var formattedDate = dateParts[2] + "-" + dateParts[1] + "-" + dateParts[0];
+                    var formattedDate = dateParts[2] + "-" + dateParts[0] + "-" + dateParts[1];
                     $("#KaryawanTglEdit").val(formattedDate);
                 } else {
                     alert("KaryawanTglEdit gagal convert tanggal");
