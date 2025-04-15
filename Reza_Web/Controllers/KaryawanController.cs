@@ -163,7 +163,7 @@ namespace Reza_Web.Controllers
 
             if (TanggalAwal != "")
             {
-                txtTanggal = " AND  TglMasukKerja LIKE '" + TanggalAwal + "%' ";
+                txtTanggal = " AND  TglMasukKerja = '" + TanggalAwal + "' ";
 
                 if (TanggalAkhir != "")
                 {
